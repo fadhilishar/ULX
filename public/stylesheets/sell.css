@@ -1,0 +1,240 @@
+body {
+  /* background: radial-gradient(#cbcc82, #e4edeee3); */
+  /* background-color: #e4edeee3; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif; */
+}
+
+section.form {
+  /* border: 2px solid #9daabe; */
+  /* background-color: #9daabe; */
+  /* border: 1px solid rgb(222, 228, 228); */
+  /* background-color: rgb(138, 144, 144); */
+  background-color: rgb(222, 228, 228);
+  /* color: aliceblue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+}
+
+section.form section.form-header {
+  /* background-color: burlywood; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 3% 0 1% 0;
+  text-align: center;
+}
+
+section.form section.sell-form {
+  background-color: rgb(173, 182, 182);
+  background-color: rgb(222, 228, 228);
+  color: rgb(67, 71, 71);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  width: 100%;
+}
+
+section.sell-form div.title {
+  /* background-color: aqua; */
+  display: flex;
+  width: 75%;
+  align-items: center;
+  margin: 1%;
+}
+
+section.sell-form div.title label {
+  /* background-color: rgb(158, 149, 68); */
+  width: 30%;
+  font-size: 1.04rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section.sell-form div.title input {
+  /* background-color: rgb(247, 0, 255); */
+  display: flex;
+  width: 65%;
+  height: 100%;
+  font-size: 1.04rem;
+}
+
+section.sell-form div.description {
+  /* background-color: rgb(0, 255, 64); */
+  display: flex;
+  width: 75%;
+  align-items: flex-start;
+  margin: 1%;
+}
+
+section.sell-form div.description label {
+  /* background-color: rgb(255, 230, 0); */
+  width: 30%;
+  font-size: 1.04rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section.sell-form div.description textarea {
+  /* background-color: rgb(202, 35, 207); */
+  display: flex;
+  width: 65%;
+  font-size: 1.04rem;
+}
+
+section.sell-form div.categoryid {
+  /* background-color: rgb(255, 0, 43); */
+  display: flex;
+  width: 75%;
+  padding: 10px 0;
+  align-items: center;
+  margin: 1%;
+}
+
+section.sell-form div.categoryid label {
+  /* background-color: rgb(221, 212, 132); */
+  width: 30%;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section.sell-form div.categoryid select {
+  /* background-color: rgb(202, 35, 207); */
+  display: flex;
+  width: 65%;
+  font-size: 1.1rem;
+}
+
+section.sell-form div.price {
+  /* background-color: rgb(95, 163, 39); */
+  display: flex;
+  width: 75%;
+  align-items: center;
+  margin: 1%;
+}
+
+section.sell-form div.price label {
+  /* background-color: rgb(180, 165, 34); */
+  width: 30%;
+  font-size: 1.04rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section.sell-form div.price input {
+  /* background-color: rgb(202, 35, 207); */
+  display: flex;
+  width: 65%;
+  font-size: 1.04rem;
+}
+
+section.sell-form div.pictures {
+  /* background-color: rgb(35, 65, 145); */
+  display: flex;
+  width: 75%;
+  align-items: center;
+  margin: 1%;
+}
+
+section.sell-form div.pictures label {
+  /* background-color: rgb(238, 224, 94); */
+  width: 30%;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+section.sell-form div.pictures input {
+  /* background-color: rgb(202, 35, 207); */
+  display: flex;
+  width: 65%;
+  font-size: 1rem;
+}
+
+section.sell-form label.compress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+section.sell-form label.warning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+section.sell-form .todo {
+  display: flex;
+  width: 30%;
+  justify-content: space-around;
+  margin-bottom: 3%;
+}
+
+section.sell-form button.add,
+section.sell-form a.cancel {
+  text-decoration: none;
+  /* border: 1px solid blue; */
+  border: none;
+  cursor: pointer;
+  background-color: aliceblue;
+  display: inline-block;
+  font-size: medium;
+  color: black;
+  box-sizing: border-box;
+  padding: 3px;
+  transition: all 250ms ease-in-out;
+}
+
+section.sell-form button.add:hover,
+section.sell-form a.cancel:hover {
+  background-color: #e1f0fe;
+  box-shadow: 0 0.5em 0.5em -0.4em #97ecec;
+  transform: translateY(-0.25em);
+  cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+  section.identity .edit-profile .avatar .avatar-image {
+    background-color: rgb(226, 162, 43);
+    width: 11rem;
+    height: 11rem;
+    margin: 17% auto;
+  }
+}
+
+@media (max-width: 800px) {
+  section.identity .edit-profile .avatar .avatar-image {
+    background-color: rgb(226, 162, 43);
+    width: 7rem;
+    height: 7rem;
+    margin: 17% auto;
+  }
+}
+
+@media (max-width: 500px) {
+  section.identity .edit-profile .avatar .avatar-image {
+    background-color: rgb(226, 162, 43);
+    width: 4rem;
+    height: 4rem;
+    margin: 17% auto;
+  }
+}

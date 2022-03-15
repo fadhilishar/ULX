@@ -1,0 +1,45 @@
+<%- include('../partials/header') -%>
+    <header>
+        <h1>Users</h1>
+        <% if (title=="edit" ) {%>
+            <label for="edit">
+                <h2>Edit Data</h2>
+            </label>
+            <%}%>
+                <% if(title=="add" ) {%>
+                    <label for="add">
+                        <h2>Add Data</h2>
+                    </label>
+                    <%}%>
+    </header>
+    <form action="" method="post">
+        <div class="mb-3 row">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" required class="form-control" id="email" name="email" value="<%= data.email %>">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" required class="form-control" id="password" name="password"
+                    value="<%= data.password %>">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="fullname" class="col-sm-2 col-form-label">Full Name</label>
+            <div class="col-sm-10">
+                <input type="text" required class="form-control" id="fullname" name="fullname"
+                    value="<%= data.fullname %>">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="roll" class="col-sm-2 col-form-label">Roll</label>
+            <div class="col-sm-10">
+                <input type="text" required class="form-control" id="roll" name="roll" value="<%= data.roll %>">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="/" class="btn btn-warning">Cancel</a>
+    </form>
+    <%- include('../partials/footer') -%>

@@ -1,0 +1,65 @@
+section.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* align-items: center; */
+  width: 98%;
+  border: 1px solid black;
+  margin: 3% auto;
+}
+
+section.info .info-price {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  /* vertical-align: top; */
+  /* text-align: start; */
+  align-items: center;
+  width: 40%;
+  border: 1px solid red;
+  font-size: xx-large;
+}
+
+section.info .info-price h3 {
+  display: flex;
+  /* align-items: flex-start; */
+  /* vertical-align: top; */
+  /* height: 70%; */
+  width: auto;
+  border: 1px solid rgb(255, 136, 0);
+  font-size: xx-large;
+}
+
+section.info .info-goods {
+  border: 1px solid greenyellow;
+  width: 55%;
+  flex: 1;
+}
+
+section.info .info-goods .title {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+}
+
+section.info .info-goods .description {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+}
+
+section.info .info-goods .seller {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.info .info-goods .contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

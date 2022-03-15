@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell</title>
+    <link rel='stylesheet' href='/stylesheets/sell.css'>
+    <link rel="stylesheet" href="/stylesheets/header.css">
+</head>
+
+<body>
+    <nav class="header">
+        <section class="logo">
+            <div class="logo-picture"><a href="/">
+                    <h3> ULX </h3>
+                </a></div>
+        </section>
+        <section class="search">
+            <form action="/" method="get">
+                <input type="text" id="search" name="search" placeholder="Temukan mobil, HP, dan lainnya..">
+                <button type="submit"><i class="bi bi-search">Search</i></button>
+            </form>
+        </section>
+        <section class="todo">
+            <a href="/logout" class="logout">
+                Logout
+            </a>
+            <a href="/" class="home">
+                Home
+            </a>
+            <a href="/sell" class="sell">
+                Sell
+            </a>
+        </section>
+    </nav>
+    <section class="header">
+        <h1>Want to Sell things?,</h1>
+        <h2>
+            Please fill this forms
+        </h2>
+    </section>
+    <section class="sell-form">
+        <form action="" id="sell" method="post" enctype="multipart/form-data"></form>
+        <h2>Selling Form</h2>
+        <div class="sell">
+            <div class="title">
+                <label for="title">
+                    <h3> Title :</h3>
+                </label>
+                <input id="title" type="text" value="<%=dataUser.title%>" form="sell" name="fullname"
+                    placeholder="Enter the title here">
+            </div>
+            <div class="description">
+                <label for="description">
+                    <h3> Description :</h3>
+                </label>
+                <textarea name="description" id="description" cols="30" rows="10"
+                    form="sell">Enter the description here</textarea>
+            </div>
+            <div class="price">
+                <label for="price">
+                    <h3> Price :</h3>
+                </label>
+                <input type="number" value="" id="price" form="sell" name="price" placeholder="Enter your price here">
+            </div>
+            <div class="mb-3 row">
+                <label for="category" class="col-sm-2 col-form-label">
+                    Category</label>
+                <select name="category" id="" class="form-control" form="sell">
+                    <option value="">Select Categories</option>
+                    <%for (let i=0;i< dataCategories.length; i++){%>
+                        <option value="<%=dataCategories[i].name%>">
+                            <%=dataCategories[i].name%>
+                        </option>
+                        <%}%>
+                </select>
+                <!-- <input type="text" class="form-control" id="category" name="category" value="<%= data.category %>"> -->
+            </div>
+            <div class="publishdate">
+                <label for="publishdate" class="publishdate">
+                    <h3> Publish Date </h3>
+                </label>
+                <input type="date" class="publishdate" id="publishdate" name="publishdate"
+                    value="<%= data.publishdate ? moment(data.publishdate).format('YYYY-MM-DD') : '' %>" form="sell">
+            </div>
+            <div class="pictures">
+                <label for="pictures" class="">
+                    <h3> Choose the Photos </h3>
+                </label>
+                <input class="form-control" type="file" name="pictures" id="pictures" value="" form="sell">
+                <!-- <div class="picture-picture">
+                    <img src="/images/<%=dataUser.avatar%>" alt="">
+                </div> -->
+            </div>
+            <label for="compress">
+                <h3> Before Add pictures, make it small first in <a href="https://www.img2go.com/compress-image"
+                        class="compress" id="compress">here</a> select Quality (i) option, 5% best compression DONT USE
+                    0%
+                    best compression</h3>
+            </label>
+            <button form="sell">Add</button>
+            <a href="/">Cancel</a>
+        </div>
+
+    </section>
+
+</body>
+
+</html>

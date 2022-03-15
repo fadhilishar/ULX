@@ -1,8 +1,67 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+a {
+  color: #00b7ff;
+  text-decoration: none;
 }
 
-a {
-  color: #00B7FF;
+a.jual {
+  text-decoration: none;
 }
+
+.kecil {
+  width: 200px;
+  height: 300px;
+}
+
+.header {
+  top: 0;
+}
+
+.mini {
+  width: 10%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.atas {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  padding-left: auto;
+  padding-right: auto;
+}
+
+.judul {
+  width: 80%;
+  position: fixed;
+  background-color: gainsboro;
+  padding-left: auto;
+  padding-right: auto;
+  top: 0;
+}
+
+.header .bawah {
+  padding-top: 13px;
+}
+
+.body {
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rekomendasi .gambar {
+  width: 50%;
+}
+
+body {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+.carousel {
+  margin-top: 100px;
+}
+
+/* apakah semua elemen html bisa diberi class? */

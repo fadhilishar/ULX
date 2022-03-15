@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel='stylesheet' href='/stylesheets/sell.css'>
+    <link rel="stylesheet" href="/stylesheets/header.css">
+</head>
+
+<body>
+    <nav class="header">
+        <section class="logo">
+            <div class="logo-picture"><a href="/">
+                    <h1> ULX </h1>
+                </a></div>
+        </section>
+        <section class="search">
+            <form action="/" method="get">
+                <input type="text" id="search" name="search" placeholder="Temukan mobil, HP, dan lainnya..">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </section>
+        <section class="todo">
+            <a href="/logout" class="logout">
+                Logout
+            </a>
+            <a href="/" class="home">
+                Home
+            </a>
+            <a href="/sell" class="sell">
+                Sell
+            </a>
+        </section>
+    </nav>
+    <% if(errorMessage.length>0) {%>
+        <div class="alert alert-danger" role="alert">
+            <%=errorMessage%>
+        </div>
+        <%}%>
+            <% if(successMessage.length>0) {%>
+                <div class="alert alert-success" role="alert">
+                    <%=successMessage%>
+                </div>
+                <%}%>
+                    <section class="form">
+                        <section class="form-header">
+                            <h2>
+                                Selling Form
+                            </h2>
+                        </section>
+                        <section class="sell-form">
+                            <h3>Fill this Form</h3>
+                            <form action="" method="post" id="sell" enctype="multipart/form-data"></form>
+                            <div class="title">
+                                <label for="title">
+                                    <h3> Title :</h3>
+                                </label>
+                                <input id="title" type="text" value="<%=dataAds.title%>" form="sell" name="title"
+                                    placeholder="Enter the title here">
+                            </div>
+                            <div class="description">
+                                <label for="description">
+                                    <h3> Description :</h3>
+                                </label>
+                                <textarea type="text" name="description" id="description" cols="30" rows="10"
+                                    form="sell" placeholder="Enter the description here"
+                                    value="<%=dataAds.description%>"><%=dataAds.description%></textarea>
+                            </div>
+                            <div class="price">
+                                <label for="price">
+                                    <h3> Price :</h3>
+                                </label>
+                                <input type="number" value="<%=dataAds.price%>" id="price" form="sell" name="price"
+                                    placeholder="Enter your price here">
+                            </div>
+                            <div class="categoryid">
+                                <label for="categoryid" class="categoryid">
+                                    Category :</label>
+                                <select name="categoryid" id="categoryid" class="categoryid" form="sell">
+                                    <%if (title=="Sell Edit" ){%>
+                                        <option value="<%=dataCategory.id%>">
+                                            <%=dataCategory.name%>
+                                        </option>
+                                        <%} else {%>
+                                            <option value="">Select Categories</option>
+                                            <%}%>
+                                                <%for (let i=0;i< dataCategories.length; i++){%>
+                                                    <option value="<%=dataCategories[i].id%>">
+                                                        <%=dataCategories[i].name%>
+                                                    </option>
+                                                    <%}%>
+                                </select>
+                            </div>
+                            <div class="pictures">
+                                <label for="pictures" class="">
+                                    <h3> Choose the Photos :</h3>
+                                </label>
+                                <input class="pictures" type="file" name="pictures" id="pictures" value="" form="sell">
+                            </div>
+                            <label for="compress" class="compress">
+                                <h4> Before Add pictures, make it small first in <a
+                                        href="https://www.img2go.com/compress-image" class="compress"
+                                        id="compress">here</a> select Quality (i) option, 5% best compression DON'T
+                                    USE 0% best compression</h4>
+                            </label>
+                            <%if (title=="Sell Edit" ) {%>
+                                <label for="warning" class="warning">
+                                    <h4> WARNING!!!! IF YOU SAVE THIS ADS, YOUR ADS WILL BECOME NOT APPROVED AGAIN, ARE
+                                        YOU SURE?</h4>
+                                </label>
+                                <%}%>
+                                    <div class="todo">
+                                        <button form="sell" class="add">Save</button>
+                                        <a href="/" class="cancel">Cancel</a>
+                                    </div>
+                        </section>
+                    </section>
+</body>
+
+</html>

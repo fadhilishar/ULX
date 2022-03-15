@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel='stylesheet' href='/stylesheets/profile.css'>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/stylesheets/header.css">
+
+</head>
+
+<body>
+    <nav class="header">
+        <section class="logo">
+            <div class="logo-picture"><a href="/">
+                    <h1> ULX </h1>
+                </a></div>
+        </section>
+        <section class="search">
+            <form action="/" method="get">
+                <input type="text" id="search" name="search" placeholder="Temukan mobil, HP, dan lainnya..">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </section>
+        <section class="todo">
+            <a href="/logout" class="logout">
+                Logout
+            </a>
+            <a href="/" class="home">
+                Home
+            </a>
+            <a href="/sell" class="sell">
+                Sell
+            </a>
+        </section>
+    </nav>
+    <% if(errorMessage.length>0) {%>
+        <div class="alert alert-danger" role="alert">
+            <%=errorMessage%>
+        </div>
+        <%}%>
+            <% if(successMessage.length>0) {%>
+                <div class="alert alert-success" role="alert">
+                    <%=successMessage%>
+                </div>
+                <%}%>
+                    <section class="header">
+
+                        <h1>Welcome to your Profile,</h1>
+                        <h2>
+                            <%=dataUser.fullname%>
+                        </h2>
+                        <h3>
+                            You login as <%=dataUser.roll=='admin'? 'admin' : 'user' %> with email :
+                                <%=dataUser.email%>
+                        </h3>
+                    </section>
+                    <section class="identity">
+                        <form action="" id="identity" method="post" enctype="multipart/form-data"></form>
+                        <h2>Edit your Profile </h2>
+                        <div class="edit-profile">
+                            <div class="avatar">
+                                <label for="fileAvatar" class="">
+                                    <h3> Edit your Avatar </h3>
+                                </label>
+                                <input class="form-control" type="file" name="fileAvatar" id="fileAvatar" value=""
+                                    form="identity">
+                                <div class="avatar-image">
+                                    <img src="/images/<%=dataUser.avatar%>" alt="">
+                                </div>
+                            </div>
+                            <div class="form">
+                                <div class="fullname">
+                                    <label for="fullname">
+                                        <h3> Full Name :</h3>
+                                    </label>
+                                    <input id="fullname" type="text" value="<%=dataUser.fullname%>" form="identity"
+                                        name="fullname" placeholder="Enter your full name here">
+                                </div>
+                                <div class="email">
+                                    <label for="email">
+                                        <h3> Email :</h3>
+                                    </label>
+                                    <input type="email" value="<%=dataUser.email%>" id="email" form="identity"
+                                        name="email" placeholder="Enter your email here">
+                                </div>
+                                <div class="password">
+                                    <label for="password">
+                                        <h3> Password :</h3>
+                                    </label>
+                                    <input type="password" value="" id="password" form="identity" name="password"
+                                        placeholder="Enter your password here">
+                                </div>
+                                <div class="phone">
+                                    <label for="phone">
+                                        <h3> Phone :</h3>
+                                    </label>
+                                    <input type="text" value="<%=dataUser.phone%>" id="phone" form="identity"
+                                        name="phone" placeholder="Enter your phone number here">
+                                </div>
+
+                                <button form="identity">Save</button>
+                                <a href="/profile">Cancel</a>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="ads-approved">
+                        <div class="title">
+                            <h2>Your Approved Ads</h2>
+                        </div>
+                        <div class="goods">
+                            <%if(dataAds.length>0) {%>
+                                <%for (let i=0; i< dataAdsApproved.length; i++) {%>
+                                    <%let item=dataAdsApproved[i]%>
+                                        <a href="/sell/<%=item.id%>">
+                                            <div class="goods-container">
+                                                <div class="picture">
+                                                    <img src="/images/<%=item.pictures ? item.pictures : 'nothing.png'%>"
+                                                        alt="" class="mini">
+                                                </div>
+                                                <div class="title">
+                                                    <h3>
+                                                        <%=item.title%>
+                                                    </h3>
+                                                    <h3>
+                                                        <%=item.description%>
+                                                    </h3>
+                                                </div>
+                                                <div class="price">
+                                                    <h3>
+                                                        <%=currencyFormatter.format(item.price,currencyFormat)%>
+                                                    </h3>
+                                                </div>
+                                                <!-- <div class="approved">
+                                                    <h3>
+                                                        <%=item.approved ? 'approved' : 'not yet approved' %>
+                                                    </h3>
+                                                </div> -->
+                                            </div>
+                                            <%}%>
+                                                <%}%>
+                                        </a>
+                        </div>
+                    </section>
+                    <section class="ads-not-approved">
+                        <div class="title">
+                            <h2>Your Not-Yet-Approved Ads</h2>
+                        </div>
+                        <div class="goods">
+                            <%if(dataAds.length>0) {%>
+                                <%for (let i=0; i< dataAdsNotApproved.length; i++) {%>
+                                    <%let item=dataAdsNotApproved[i]%>
+                                        <a href="/sell/<%=item.id%>">
+                                            <div class="goods-container">
+                                                <div class="picture">
+                                                    <img src="/images/<%=item.pictures ? item.pictures : 'nothing.png'%>"
+                                                        alt="" class="mini">
+                                                </div>
+                                                <div class="title">
+                                                    <h3>
+                                                        <%=item.title%>
+                                                    </h3>
+                                                    <h3>
+                                                        <%=item.description%>
+                                                    </h3>
+                                                </div>
+                                                <div class="price">
+                                                    <h3>
+                                                        <%=currencyFormatter.format(item.price,currencyFormat)%>
+                                                    </h3>
+                                                </div>
+                                                <!-- <div class="approved">
+                                                    <h3>
+                                                        <%=item.approved ? 'approved' : 'not yet approved' %>
+                                                    </h3>
+                                                </div> -->
+                                            </div>
+                                            <%}%>
+                                                <%}%>
+                                        </a>
+                        </div>
+                    </section>
+</body>
+
+</html>

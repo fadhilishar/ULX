@@ -1,0 +1,15 @@
+section.ads {
+  display: flex;
+  flex-direction: column;
+  background-color: chartreuse;
+  width: 80%;
+}
+
+.goods {
+  width: 10%;
+  background-color: violet;
+}
+
+.picture img {
+  object-fit: cover;
+}

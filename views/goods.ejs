@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/stylesheets/carousel.css">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/goods.css">
+
+    <script src="/javascripts/carousel.js" async></script>
+
+</head>
+
+<body>
+    <nav class="header">
+        <section class="logo">
+            <div class="logo-picture">
+                <a href="/">
+                    <h1> ULX</h1>
+                </a>
+            </div>
+        </section>
+        <section class="search">
+            <form action="" method="get">
+                <input type="text" id="search" name="search" placeholder="Temukan mobil, HP, dan lainnya..">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </section>
+        <section class="todo">
+            <%if (userIn){%>
+                <a href="/logout" class="logout">Logout</a>
+                <div class="profile">
+                    <a href="/profile" class="profile">
+                        <%if (dataUser.avatar){%>
+                            <img src="/images/<%=dataUser.avatar%>" alt="your profile picture">
+                            <%} else {%>
+                                Profile
+                                <%}%>
+                    </a>
+                </div>
+                <a href="/sell" class="sell">Sell</a>
+                <%} else{%>
+                    <a href="/login" class="login">Login</a>
+                    <a href="/register" class="register">Register</a>
+                    <a href="/sell" class="sell">Sell</a>
+                    <%}%>
+        </section>
+    </nav>
+    <!-- <img src="/images/<%=dataAd.pictures[0]%>"> -->
+
+    <section class="slideshow">
+        <h2>Selengkapnya tentang ....</h2>
+        <div class="slideshow-container">
+            <%for (let i=0; i < dataAd.pictures.length ; i++) {%>
+                <div class="mySlides fade">
+                    <div class="numbertext">
+                        <%=i+1%> / <%=Math.ceil(dataAd.pictures.length)%>
+                    </div>
+                    <a href="/goods/<%=dataAd.id%>">
+                        <img src="/images/<%=dataAd.pictures%>">
+                    </a>
+                    <div class="text">
+                        <%=dataAd.title%>
+                    </div>
+                </div>
+                <%}%>
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        </div>
+        <br>
+        <div style="text-align:center">
+            <%for (let i=0; i < dataAd.length; i++) {%>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <%}%>
+        </div>
+    </section>
+    <section class="info">
+        <section class="info-price">
+            <h3>
+                <%=currencyFormatter.format(dataAd.price, currencyFormat)%>
+            </h3>
+        </section>
+        <section class="info-goods">
+            <div class="title">
+                <h2>
+                    <%=dataAd.title%>
+                </h2>
+            </div>
+            <div class="description">
+                <h3>
+                    <%=dataAd.description%>
+                </h3>
+            </div>
+            <div class="contact">
+                <div class="seller">
+                    <h3><i class="fa fa-user" aria-hidden="true"></i>:</h3>
+                    <%=dataSeller.fullname%>
+                </div>
+                <div class="phone">
+                    <h3><i class="fa fa-phone fa-rotate-90"></i>:</h3>
+                    <%=dataSeller.phone%>
+                </div>
+            </div>
+        </section>
+    </section>
+
+
+</body>
+
+</html>

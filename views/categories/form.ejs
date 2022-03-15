@@ -1,0 +1,25 @@
+<%- include('../partials/header') -%>
+    <header>
+        <h1>Categories</h1>
+        <% if (title=="edit" ) {%>
+            <label for="edit">
+                <h2>Edit Data</h2>
+            </label>
+            <%}%>
+                <% if(title=="add" ) {%>
+                    <label for="add">
+                        <h2>Add Data</h2>
+                    </label>
+                    <%}%>
+    </header>
+    <form action="" method="post">
+        <div class="mb-3 row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" required class="form-control" id="name" name="name" value="<%= data.name %>">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="/" class="btn btn-warning">Cancel</a>
+    </form>
+    <%- include('../partials/footer') -%>

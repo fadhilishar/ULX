@@ -1,0 +1,171 @@
+<%- include('../partials/header') -%>
+    <nav class="header">
+        <section class="logo">
+            <div class="logo-picture">
+                <a href="/">
+                    <h3> ULX</h3>
+                </a>
+            </div>
+        </section>
+        <!-- <section class="search">
+        <form action="" method="get">
+            <input type="text" id="search" name="search" placeholder="Temukan mobil, HP, dan lainnya..">
+            <button type="submit"><i class="bi bi-search">Search</i></button>
+        </form>
+    </section> -->
+        <section class="todo">
+            <a href="/ads" class="ads">Ads</a>
+            <a href="/users" class="users">Users</a>
+            <a href="/categories" class="categories">Categories</a>
+            <a href="/logout" class="logout">Logout</a>
+        </section>
+    </nav>
+    <header>
+        <h1>Admin</h1>
+    </header>
+    <% if(errorMessage.length>0) {%>
+        <div class="alert alert-danger" role="alert">
+            <%=errorMessage%>
+        </div>
+        <%}%>
+            <% if(successMessage.length>0) {%>
+                <div class="alert alert-success" role="alert">
+                    <%=successMessage%>
+                </div>
+                <%}%>
+                    <form action="" method="get">
+                        <input type="hidden" name="page" value="1" />
+                        <input type="hidden" name="sortBy" value="id" />
+                        <input type="hidden" name="sortMode" value="asc" />
+                        <div class="card mb-2">
+                            <div class="card-header">
+                                <h2>Search</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3 row">
+                                    <label for="string" class="col-sm-2 col-form-label"><input class="form-check-input"
+                                            type="checkbox" name="emailcheck" value="yes">
+                                        Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="email" name="email"
+                                            value="<%= query.email %>">
+                                    </div>
+                                </div>
+                                <!-- <div class="mb-3 row">
+                    <label for="string" class="col-sm-2 col-form-label"><input class="form-check-input" type="checkbox"
+                            name="passwordcheck" value="yes">
+                        Password</label>
+                    <div class="col-sm-10">
+                        <input type="roll" class="form-control" id="password" name="password"
+                            value="<%= query.password %>">
+                    </div>
+                </div> -->
+                                <div class="mb-3 row">
+                                    <label for="string" class="col-sm-2 col-form-label"><input class="form-check-input"
+                                            type="checkbox" name="fullnamecheck" value="yes">
+                                        Full Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="fullname" name="fullname"
+                                            value="<%= query.fullname %>">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="string" class="col-sm-2 col-form-label"><input class="form-check-input"
+                                            type="checkbox" name="rollcheck" value="yes">
+                                        Roll</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="roll" name="roll"
+                                            value="<%= query.roll %>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success"><i class="fas fa-search"></i>
+                                    Search</button>
+                                <a href="/users" class="btn btn-warning"><i class="fas fa-sync"></i> Reset</a>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- <a class="btn btn-primary" href="/users/add"><i class="fas fa-plus"></i> Add</a> -->
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><a
+                                        href="<%= pagination.url.replace(`sortBy=${query.sortBy}&sortMode=${query.sortMode}`, `sortBy=id&sortMode=${query.sortMode == 'asc' ? 'desc' : 'asc'}`) %>"><i
+                                            class="fas fa-<%= query.sortBy == 'id' ? (query.sortMode == 'asc' ? 'sort-up' : 'sort-down') : 'sort' %>"></i>
+                                        ID</a></th>
+                                <th><a
+                                        href="<%= pagination.url.replace(`sortBy=${query.sortBy}&sortMode=${query.sortMode}`, `sortBy=email&sortMode=${query.sortMode == 'asc' ? 'desc' : 'asc'}`) %>"><i
+                                            class="fas fa-<%= query.sortBy == 'email' ? (query.sortMode == 'asc' ? 'sort-up' : 'sort-down') : 'sort' %>"></i>
+                                        Email</a></th>
+                                <!-- <th><a
+                        href="<%= pagination.url.replace(`sortBy=${query.sortBy}&sortMode=${query.sortMode}`, `sortBy=password&sortMode=${query.sortMode == 'asc' ? 'desc' : 'asc'}`) %>"><i
+                            class="fas fa-<%= query.sortBy == 'password' ? (query.sortMode == 'asc' ? 'sort-up' : 'sort-down') : 'sort' %>"></i>
+                        Password</a></th> -->
+                                <th><a
+                                        href="<%= pagination.url.replace(`sortBy=${query.sortBy}&sortMode=${query.sortMode}`, `sortBy=fullname&sortMode=${query.sortMode == 'asc' ? 'desc' : 'asc'}`) %>"><i
+                                            class="fas fa-<%= query.sortBy == 'fullname' ? (query.sortMode == 'asc' ? 'sort-up' : 'sort-down') : 'sort' %>"></i>
+                                        Full Name</a></th>
+                                <th><a
+                                        href="<%= pagination.url.replace(`sortBy=${query.sortBy}&sortMode=${query.sortMode}`, `sortBy=roll&sortMode=${query.sortMode == 'asc' ? 'desc' : 'asc'}`) %>"><i
+                                            class="fas fa-<%= query.sortBy == 'roll' ? (query.sortMode == 'asc' ? 'sort-up' : 'sort-down') : 'sort' %>"></i>
+                                        Roll</a></th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%for (let index=0; index < data.length; index++) {%>
+                                <%let item=data[index]%>
+                                    <tr>
+                                        <td>
+                                            <%= item.id %>
+                                        </td>
+                                        <td>
+                                            <%= item.email %>
+                                        </td>
+                                        <!-- <td>
+                            <%= item.password %>
+                        </td> -->
+                                        <td>
+                                            <%= item.fullname %>
+                                        </td>
+                                        <td>
+                                            <%= item.roll %>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success" href="/users/edit/<%= item.id%>"><i
+                                                    class="fas fa-edit"></i></a>
+                                            <a class="btn btn-danger" href="/users/delete/<%= item.id%>"><i
+                                                    class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="page-item<%=pagination.page == 1 ? ' disabled' : '' %>">
+                                <a class="page-link"
+                                    href="<%= pagination.url.replace(`page=${pagination.page}`, `page=${pagination.page-1}`) %>"
+                                    aria-label="Previous">
+                                    <span aria-hidden="true">Previous</span>
+                                </a>
+                            </li>
+                            <% for( let i=1; i <=pagination.pages; i++ ) { %>
+                                <li class="page-item<%=pagination.page==i ? ' active' : '' %>"><a class="page-link"
+                                        href="<%= pagination.url.replace(`page=${pagination.page}`, `page=${i}`) %>">
+                                        <%= i %>
+                                    </a></li>
+                                <% } %>
+                                    <li class="page-item<%=pagination.page == pagination.pages ? ' disabled' : '' %>">
+                                        <a class="page-link"
+                                            href="<%= pagination.url.replace(`page=${pagination.page}`, `page=${pagination.page+1}`) %>"
+                                            aria-label="Next">
+                                            <span aria-hidden="true">Next</span>
+                                        </a>
+                                    </li>
+                        </ul>
+                    </nav>
+                    <%- include('../partials/footer') -%>

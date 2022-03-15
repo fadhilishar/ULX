@@ -1,0 +1,132 @@
+<%- include('../partials/header') -%>
+    <header>
+        <h1>Ads</h1>
+        <% if (title=="edit" ) {%>
+            <label for="edit">
+                <h2>Edit Data</h2>
+            </label>
+            <%}%>
+                <% if(title=="add" ) {%>
+                    <label for="add">
+                        <h2>Add Data</h2>
+                    </label>
+                    <%}%>
+    </header>
+
+    <form action="" method="post" id="main" enctype="multipart/form-data">
+        <div class="mb-3 row">
+            <label for="title" class="col-sm-2 col-form-label">
+                Title</label>
+            <div class="col-sm-10">
+                <input type="text" required class="form-control" id="title" name="title" value="<%= data.title %>">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="description" class="col-sm-2 col-form-label">
+                Description</label>
+            <div class="col-sm-10">
+                <!-- <input type="text" required class="form-control" id="description" name="description"
+                    value="<%= data.description %>"> -->
+                <textarea type="text" required class="form-control" id="description" name="description" value=""
+                    rows="4"><%= data.description %></textarea>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="price" class="col-sm-2 col-form-label">
+                Price</label>
+            <div class="col-sm-10">
+                <input type="number" required class="form-control" id="name" name="price" value="<%=data.price %>">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="user" class="col-sm-2 col-form-label">
+                User</label>
+            <div class="col-sm-10">
+                <input type="integer" class="form-control" id="user" name="user" value="<%= data.user %>">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="category" class="col-sm-2 col-form-label">
+                Category</label>
+            <div class="col-sm-10">
+                <select name="category" id="" class="form-control">
+                    <% if (title=="Edit Ads" ) {%>
+                        <option value="<%=dataCategory.id%>">
+                            <%=dataCategory.name%>
+                        </option>
+                        <%}%>
+                            <%if (title=="Add Ads" ){%>
+                                <option value="">Select Categories</option>
+                                <%}%>
+                                    <%for (let i=0;i< dataCategories.length; i++){%>
+                                        <option value="<%=dataCategories[i].name%>">
+                                            <%=dataCategories[i].name%>
+                                        </option>
+                                        <%}%>
+                </select>
+                <!-- <input type="text" class="form-control" id="category" name="category" value="<%= data.category %>"> -->
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="publishdate" class="col-sm-2 col-form-label">
+                Publish Date</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="publishdate" name="publishdate"
+                    value="<%= data.publishdate ? moment(data.publishdate).format('YYYY-MM-DD') : '' %>">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="pictures" class="col-sm-2 col-form-label">
+                Pictures</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="file" name="pictures" id="pictures" value="data.pictures">
+                <!-- <button class="btn btn-success">Upload!</button> -->
+            </div>
+            <img src="/images/<%= data.pictures ? data.pictures[0] : 'nothing.png'%>" alt="">
+        </div>
+        <label for="compress">
+            <h3> Before Add pictures, make it small first in <a href="https://www.img2go.com/compress-image"
+                    class="compress" id="compress">here</a> select Quality (i) option, 5% best compression DONT USE 0%
+                best compression</h3>
+        </label>
+        <button class="btn btn-success">Save</button>
+        <a href="/" class="btn btn-warning">Cancel</a>
+    </form>
+
+    <!-- <form ref='uploadForm' id='uploadForm' action='http://localhost:3000/ads/form' method='post'
+        encType="multipart/form-data">
+        <div class="mb-3">
+            <label for="pictures" class="col-sm-2 col-form-label">
+                Pictures</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="file" name="sampleFile" id="pictures">
+            </div>
+        </div>
+        <button class="btn btn-success">Upload!</button>
+    </form> -->
+
+
+
+    <!-- <div class="mb-3 row">
+        <label for="pictures" class="col-sm-2 col-form-label">
+            Pictures</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="pictures" name="pictures[]" value="<%= data.pictures %>">
+        </div>
+    </div> -->
+    <!-- <button class="btn btn-success" form="uploadForm">Upload!</button> -->
+
+
+
+    <!-- <form ref='uploadForm' id='uploadForm' action='http://localhost:3000/ads/form' method='post'
+        encType="multipart/form-data">
+        <label for="pictures" class="col-sm-2 col-form-label">
+            Pictures</label>
+        <input type="file" name="sampleFile" />
+        <input type='submit' value='Upload!' />
+        <button>Upload!</button>
+    </form>
+ -->
+
+
+    <%- include('../partials/footer') -%>

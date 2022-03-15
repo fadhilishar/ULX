@@ -1,0 +1,114 @@
+/* header {
+  margin-top: 15%;
+  background-color: cornflowerblue;
+} */
+
+body {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+section.category {
+  width: 90%;
+  margin: 0.5rem auto;
+  /* background-color: gainsboro; */
+  /* background-color: rgb(222, 228, 228); */
+  border-radius: 2%;
+}
+
+.body {
+  margin-top: 5%;
+}
+
+section.slideshow {
+  /* background-color: rgb(167, 172, 179); */
+  background-color: rgb(222, 228, 228);
+  width: 90%;
+  /* height: 70rem; */
+  margin: 0 auto;
+  border-radius: 1%;
+  /* color: white; */
+}
+
+/* section.slideshow .slideshow-container {
+  width: 70%;
+  height: 100%;
+}
+
+section.slideshow .slideshow-container .mySlides img {
+  width: 100%;
+  height: 100%;
+} */
+
+section.recommendation {
+  background-color: #97a7bd;
+  width: 90%;
+  margin: auto;
+  border-radius: 1%;
+}
+
+.recommendation h2 {
+  color: #fff;
+  display: flex;
+}
+
+section.recommendation .goods {
+  margin: 0 auto;
+  border-radius: 1%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+section.recommendation .goods a {
+  margin: 0.3% auto;
+  /* background-color: blue;
+  border: 3px solid red; */
+  border-radius: 1%;
+  /* display: inline-block; */
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 24%;
+  text-decoration: none;
+  color: rgb(15, 40, 65);
+  /* height: 85%; */
+}
+
+.recommendation .goods-container {
+  /* margin-top: 10%; */
+  width: 100%;
+  height: 24rem;
+  margin: 1.5% 0.1%;
+  border-radius: 3%;
+  /* border: 3px solid rgb(161, 151, 137); */
+  background-image: url(/images/wall.jpg);
+}
+
+.recommendation .goods-container:hover {
+  /* border: 2px solid #97a7bd; */
+  border: 3px solid rgb(222, 228, 228);
+}
+
+.recommendation .goods-container .picture {
+  /* margin-top: 10%; */
+  width: 70%;
+  height: 50%;
+  margin: 3% auto;
+  background-color: chartreuse;
+  border-radius: 8%;
+}
+
+.recommendation .goods-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8%;
+}
+
+.recommendation .goods-container h3 {
+  margin: 10% auto;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,238 @@
+<%- include('../partials/header') -%>
+    <nav class="header">
+        <section class="logo">
+            <div class="logo-picture">
+                <a href="/">
+                    <h3> ULX</h3>
+                </a>
+            </div>
+        </section>
+        <!-- <section class="search">
+        <form action="" method="get">
+            <input type="text" id="search" name="search" placeholder="Temukan mobil, HP, dan lainnya..">
+            <button type="submit"><i class="bi bi-search">Search</i></button>
+        </form>
+    </section> -->
+        <section class="todo">
+            <a href="/ads" class="ads">Ads</a>
+            <a href="/users" class="users">Users</a>
+            <a href="/categories" class="categories">Categories</a>
+            <a href="/logout" class="logout">Logout</a>
+        </section>
+    </nav>
+
+    <header>
+        <h1>Ads</h1>
+    </header>
+
+    <% if(errorMessage.length>0) {%>
+        <div class="alert alert-danger" role="alert">
+            <%=errorMessage%>
+        </div>
+        <%}%>
+            <% if(successMessage.length>0) {%>
+                <div class="alert alert-success" role="alert">
+                    <%=successMessage%>
+                </div>
+                <%}%>
+                    <form action="" method="get">
+                        <input type="hidden" name="page" value="1" />
+                        <input type="hidden" name="sortBy" value="id" />
+                        <input type="hidden" name="sortMode" value="asc" />
+                        <div class="card mb-2">
+                            <div class="card-header">
+                                <h2>Search</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3 row">
+                                    <label for="titlecheck" class="col-sm-2 col-form-label"><input
+                                            class="form-check-input" type="checkbox" name="titlecheck" value="yes"
+                                            id="titlecheck">
+                                        Title</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="title" name="title"
+                                            value="<%= query.title %>">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="pricecheck" class="col-sm-2 col-form-label"><input
+                                            class="form-check-input" type="checkbox" name="pricecheck" value="yes"
+                                            id="pricecheck">
+                                        Price</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" id="price" name="price"
+                                            value="<%= currencyFormatter.format(query.price,currencyFormat) %>">
+                                    </div>
+                                </div>
+                                <!-- Disini dikasih kondisi kalau dia admin, maka bisa liat ini -->
+                                <div class="mb-3 row">
+                                    <label for="usercheck" class="col-sm-2 col-form-label"><input
+                                            class="form-check-input" type="checkbox" name="usercheck" id="usercheck"
+                                            value="yes">
+                                        User</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="user" name="user"
+                                            value="<%= query.user %>">
+                                    </div>
+                                </div>
+                                <!-- Selesai melihat -->
+                                <div class="mb-3 row">
+                                    <label for="categorycheck" class="col-sm-2 col-form-label"><input
+                                            class="form-check-input" type="checkbox" name="categorycheck" value="yes"
+                                            id="categorycheck">
+                                        Category</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="category" name="category"
+                                            value="<%= query.category %>">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="publishdatecheck" class="col-sm-2 col-form-label"><input
+                                            class="form-check-input" type="checkbox" name="publishdatecheck" value="yes"
+                                            id="publishdatecheck">
+                                        Publish Date</label>
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <input type="date" class="form-control" id="startdate" name="startdate"
+                                                    value="<%= query.startdate %>">
+                                            </div>
+                                            <span class="col-sm-2">to</span>
+                                            <div class="col-sm-5">
+                                                <input type="date" class="form-control" id="enddate" name="enddate"
+                                                    value="<%= query.enddate %>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="approvedcheck" class="col-sm-2 col-form-label"><input
+                                            class="form-check-input" type="checkbox" name="approvedcheck" value="yes"
+                                            id="approvedcheck">
+                                        Approved ?</label>
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <div class="col-sm-2 col-form-label">
+                                                <input type="checkbox" class="form-check-input" id="approved"
+                                                    name="approved" value="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success"><i class="fas fa-search"></i>
+                                    Search</button>
+                                <a href="/ads" class="btn btn-warning"><i class="fas fa-sync"></i> Reset</a>
+                            </div>
+                        </div>
+                    </form>
+                    <a class="btn btn-primary" href="/ads/add"><i class="fas fa-plus"></i> Add</a>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><a
+                                        href="<%= pagination.url.replace(`sortBy=${query.sortBy}&sortMode=${query.sortMode}`, `sortBy=id&sortMode=${query.sortMode == 'asc' ? 'desc' : 'asc'}`) %>"><i
+                                            class="fas fa-<%= query.sortBy == 'id' ? (query.sortMode == 'asc' ? 'sort-up' : 'sort-down') : 'sort' %>"></i>
+                                        ID</a></th>
+                                <th><a
+                                        href="<%= pagination.url.replace(`sortBy=${query.sortBy}&sortMode=${query.sortMode}`, `sortBy=title&sortMode=${query.sortMode == 'asc' ? 'desc' : 'asc'}`) %>"><i
+                                            class="fas fa-<%= query.sortBy == 'title' ? (query.sortMode == 'asc' ? 'sort-up' : 'sort-down') : 'sort' %>"></i>
+                                        Title</a></th>
+                                <th><a
+                                        href="<%= pagination.url.replace(`sortBy=${query.sortBy}&sortMode=${query.sortMode}`, `sortBy=description&sortMode=${query.sortMode == 'asc' ? 'desc' : 'asc'}`) %>"><i
+                                            class="fas fa-<%= query.sortBy == 'description' ? (query.sortMode == 'asc' ? 'sort-up' : 'sort-down') : 'sort' %>"></i>
+                                        Description</a></th>
+                                <th><a
+                                        href="<%= pagination.url.replace(`sortBy=${query.sortBy}&sortMode=${query.sortMode}`, `sortBy=price&sortMode=${query.sortMode == 'asc' ? 'desc' : 'asc'}`) %>"><i
+                                            class="fas fa-<%= query.sortBy == 'price' ? (query.sortMode == 'asc' ? 'sort-up' : 'sort-down') : 'sort' %>"></i>
+                                        Price</a></th>
+                                <th><a
+                                        href="<%= pagination.url.replace(`sortBy=${query.sortBy}&sortMode=${query.sortMode}`, `sortBy=fullname&sortMode=${query.sortMode == 'asc' ? 'desc' : 'asc'}`) %>"><i
+                                            class="fas fa-<%= query.sortBy == 'fullname' ? (query.sortMode == 'asc' ? 'sort-up' : 'sort-down') : 'sort' %>"></i>
+                                        User</a></th>
+                                <th><a
+                                        href="<%= pagination.url.replace(`sortBy=${query.sortBy}&sortMode=${query.sortMode}`, `sortBy=name&sortMode=${query.sortMode == 'asc' ? 'desc' : 'asc'}`) %>"><i
+                                            class="fas fa-<%= query.sortBy == 'name' ? (query.sortMode == 'asc' ? 'sort-up' : 'sort-down') : 'sort' %>"></i>
+                                        Category</a></th>
+                                <th><a
+                                        href="<%= pagination.url.replace(`sortBy=${query.sortBy}&sortMode=${query.sortMode}`, `sortBy=publishdate&sortMode=${query.sortMode == 'asc' ? 'desc' : 'asc'}`) %>"><i
+                                            class="fas fa-<%= query.sortBy == 'publishdate' ? (query.sortMode == 'asc' ? 'sort-up' : 'sort-down') : 'sort' %>"></i>
+                                        Publish Date</a></th>
+                                <th><a
+                                        href="<%= pagination.url.replace(`sortBy=${query.sortBy}&sortMode=${query.sortMode}`, `sortBy=approved&sortMode=${query.sortMode == 'asc' ? 'desc' : 'asc'}`) %>"><i
+                                            class="fas fa-<%= query.sortBy == 'approved' ? (query.sortMode == 'asc' ? 'sort-up' : 'sort-down') : 'sort' %>"></i>
+                                        Approved</a></th>
+                                <th>Pictures</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%for (let index=0; index < data.length; index++) {%>
+                                <%let item=data[index]%>
+                                    <tr>
+                                        <td>
+                                            <%= item.id %>
+                                        </td>
+                                        <td>
+                                            <%= item.title %>
+                                        </td>
+                                        <td>
+                                            <%= item.description%>
+                                        </td>
+                                        <td>
+                                            <%= currencyFormatter.format(item.price,currencyFormat)%>
+                                        </td>
+                                        <td>
+                                            <%= item.fullname%>
+                                        </td>
+                                        <td>
+                                            <%= item.name%>
+                                        </td>
+                                        <td>
+                                            <%= item.publishdate ? moment(item.publishdate).format('DD MMM YYYY')
+                                                : "kosong" %>
+                                        </td>
+                                        <td>
+                                            <%= item.approved%>
+                                        </td>
+                                        <td>
+                                            <img src="/images/<%= item.pictures ? item.pictures[0] :  'nothing.png' %>"
+                                                alt="" width="80" height="auto">
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success" href="/ads/edit/<%= item.id%>"><i
+                                                    class="fas fa-edit"></i></a>
+                                            <a class="btn btn-danger" href="/ads/delete/<%= item.id%>"><i
+                                                    class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="page-item<%=pagination.page == 1 ? ' disabled' : '' %>">
+                                <a class="page-link"
+                                    href="<%=pagination.url.replace(`page=${pagination.page}`,` page=${pagination.page-1}`) %>"
+                                    aria-label="Previous">
+                                    <span aria-hidden="true">Previous</span>
+                                </a>
+                            </li>
+                            <% for( let i=1; i <=pagination.pages; i++ ) { %>
+                                <li class="page-item<%=pagination.page==i ? ' active' : '' %>"><a class="page-link"
+                                        href="<%= pagination.url.replace(`page=${pagination.page}`, `page=${i}`) %>">
+                                        <%= i %>
+                                    </a></li>
+                                <% } %>
+                                    <li class="page-item<%=pagination.page == pagination.pages ? ' disabled' : '' %>">
+                                        <a class="page-link"
+                                            href="<%= pagination.url.replace(`page=${pagination.page}`,`page=${pagination.page+1}`)%>"
+                                            aria-label="Next">
+                                            <span aria-hidden="true">Next</span>
+                                        </a>
+                                    </li>
+                        </ul>
+                    </nav>
+                    <%- include('../partials/footer') -%>
